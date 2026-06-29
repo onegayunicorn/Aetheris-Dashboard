@@ -13,11 +13,14 @@ data class EngineMetrics(
     val entropy: Float,
     val stability: Float,
     val flux: Float,
-    val chdsStatus: String
+    val chdsStatus: String,
+    val magnetronicFlux: Float,
+    val temperature: Float,
+    val pressure: Float
 )
 
 class SimulationEngine {
-    private val _metrics = MutableStateFlow(EngineMetrics(85.38f, 0.39f, 0.92f, 0.80f, "Stable"))
+    private val _metrics = MutableStateFlow(EngineMetrics(85.38f, 0.39f, 0.92f, 0.80f, "Stable", 0.80f, 290.0f, 101325.0f))
     val metrics = _metrics.asStateFlow()
 
     private val _alerts = MutableSharedFlow<String>()
@@ -37,11 +40,7 @@ class SimulationEngine {
         }
     }
 
-    fun runQuantumEntanglementDegradation() {
-        val newFlux = _metrics.value.flux - 0.3f
-        _metrics.value = _metrics.value.copy(flux = newFlux, stability = _metrics.value.stability - 0.1f)
-        if (newFlux < 0.2f) {
-            scope.launch { _alerts.emit("Alert: Quantum decoherence detected!") }
-        }
+    fun updateCHDEParameters(newTemp: Float, newPressure: Float) {
+        _metrics.value = _metrics.value.copy(temperature = newTemp, pressure = newPressure, magnetronicFlux = newTemp * 0.002f)
     }
 }

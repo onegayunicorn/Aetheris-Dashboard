@@ -1,5 +1,11 @@
 package com.example.ui.screens
 
+import com.example.ui.components.WeightedGearComponent
+import com.example.ui.theme.Cyan400
+import com.example.ui.theme.Orange400
+import com.example.ui.theme.TextSlate100
+import com.example.viewmodel.EngineViewModel
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -11,11 +17,6 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.ui.theme.Cyan400
-import com.example.ui.theme.Orange400
-import com.example.ui.theme.TextSlate100
-import com.example.viewmodel.EngineViewModel
-import androidx.compose.animation.core.*
 
 @Composable
 fun SteampunkEngineScreen(viewModel: EngineViewModel = viewModel()) {
@@ -32,6 +33,9 @@ fun SteampunkEngineScreen(viewModel: EngineViewModel = viewModel()) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text("Steampunk Engine Visualizer", style = MaterialTheme.typography.headlineMedium, color = TextSlate100)
+        
+        // Interactive weighted gear driven by kinetic energy
+        WeightedGearComponent(angularVelocity = metrics.kineticEnergy / 10f)
         
         // Steampunk Engine 3D View
         Card(modifier = Modifier.fillMaxWidth().height(250.dp).padding(vertical = 8.dp), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)) {

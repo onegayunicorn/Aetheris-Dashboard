@@ -108,7 +108,10 @@ fun DashboardScreen(viewModel: EngineViewModel) {
             Pair("Heavy Gear", "${metrics.kineticEnergy} SU"),
             Pair("Fractal Cryo", metrics.chdsStatus),
             Pair("M-Flux", "${metrics.flux} ΔS"),
-            Pair("T-Lock", "${metrics.stability} Hz")
+            Pair("T-Lock", "${metrics.stability} Hz"),
+            Pair("Magnetronic", "${metrics.magnetronicFlux} mT"),
+            Pair("Temp", "${metrics.temperature} K"),
+            Pair("Pressure", "${metrics.pressure} Pa")
         )
         
         cards.chunked(2).forEach { rowCards ->

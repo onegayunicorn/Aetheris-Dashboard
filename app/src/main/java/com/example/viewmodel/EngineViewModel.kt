@@ -13,7 +13,10 @@ class EngineViewModel : ViewModel() {
         when(scenario) {
             "temp" -> engine.runExtremeTemperatureFluctuation()
             "impact" -> engine.runHighImpactStressTest()
-            "quantum" -> engine.runQuantumEntanglementDegradation()
         }
+    }
+
+    fun updateCHDEParameters(temp: Float, pressure: Float) {
+        engine.updateCHDEParameters(temp, pressure)
     }
 }
