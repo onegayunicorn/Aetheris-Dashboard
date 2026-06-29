@@ -1,0 +1,6 @@
+{
+  "name": "Aetheris Dashboard",
+  "description": "Dashboard for managing and monitoring the Aetheris Engine.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
